@@ -39,10 +39,13 @@
         android:background="@mipmap/ic_launcher_round">
 
 
-        <View
+        <TextView
             android:id="@+id/titleBraaa"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:text="标题栏"
+            android:gravity="center"
+            android:textSize="20dp"
             android:background="#ffffff"/>
 
 
