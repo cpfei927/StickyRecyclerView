@@ -11,6 +11,9 @@ public class DataBean implements Serializable {
     public static final int TYPE_GROUP = 1;
     public static final int TYPE_SUB = 2;
 
+    // 测试git merge
+    private String string;
+
     private String title;
     private int type;
 
