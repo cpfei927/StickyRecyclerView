@@ -50,24 +50,24 @@ public class StickyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         } else if (viewHolder instanceof GroupViewHolder) {
             GroupViewHolder holder = (GroupViewHolder) viewHolder;
-            holder.text.setText(datas.get(i - 1).getTitle());
+            holder.text.setText(datas.get(i).getTitle());
         } else if(viewHolder instanceof SubViewHolder) {
             SubViewHolder holder = (SubViewHolder) viewHolder;
-            holder.text.setText(datas.get(i - 1).getTitle());
+            holder.text.setText(datas.get(i).getTitle());
         }
     }
 
     @Override
     public int getItemCount() {
-        return datas == null ? 0 : datas.size() + 1;
+        return datas == null ? 0 : datas.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) {
-            return 0;// header view
-        }
-        DataBean dataBean = datas.get(position - 1);
+//        if (position == 0) {
+//            return 0;// header view
+//        }
+        DataBean dataBean = datas.get(position);
         if (dataBean.getType() == DataBean.TYPE_GROUP) {
             return DataBean.TYPE_GROUP;
         } else {

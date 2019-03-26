@@ -14,18 +14,18 @@ import android.widget.RelativeLayout;
  */
 public class StickyOnScrollListener extends RecyclerView.OnScrollListener {
 
-    private View view;
     private ViewGroup viewSticky;
     private OnChangeStickyStatusListener listener;
     private int coverHeight;
+    private Context context;
 
     public StickyOnScrollListener(Context context) {
+        this.context = context;
         coverHeight = dip2px(context, 250);
     }
 
-    public void setViewSticky(ViewGroup viewSticky, View title) {
+    public void setViewSticky(ViewGroup viewSticky) {
         this.viewSticky = viewSticky;
-        this.view = title;
     }
 
     public void setListener(OnChangeStickyStatusListener listener) {
@@ -43,28 +43,28 @@ public class StickyOnScrollListener extends RecyclerView.OnScrollListener {
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
         if (layoutManager instanceof LinearLayoutManager) {
             LinearLayoutManager linearLayoutManager = (LinearLayoutManager) layoutManager;
-            float alpha = 255;
-            if (linearLayoutManager.findFirstVisibleItemPosition() == 0) { // 在顶部滚动时，设置标题栏的颜色渐变，同时设置封面图的margin来代替应有的滚动效果
-                View child = linearLayoutManager.findViewByPosition(linearLayoutManager.findFirstVisibleItemPosition());
-                if (null == child) {
-                    view.setAlpha(1);
-
-//                    RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) ntCover.getLayoutParams();
-//                    layoutParams.topMargin = 0;
-//                    ntCover.setLayoutParams(layoutParams);
-                } else {
-                    alpha = Math.abs(child.getTop());
-                    alpha = alpha * 255 / (coverHeight - view.getHeight());
-                    view.setAlpha(Math.min(alpha, 255) / 255);
-
-//                    RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) ntCover.getLayoutParams();
-//                    layoutParams.topMargin -= dy;
-//                    layoutParams.topMargin = Math.min(layoutParams.topMargin, 0);
-//                    ntCover.setLayoutParams(layoutParams);
-                }
-            } else {
-                view.setAlpha(1);
-            }
+//            float alpha = 255;
+//            if (linearLayoutManager.findFirstVisibleItemPosition() == 0) { // 在顶部滚动时，设置标题栏的颜色渐变，同时设置封面图的margin来代替应有的滚动效果
+//                View child = linearLayoutManager.findViewByPosition(linearLayoutManager.findFirstVisibleItemPosition());
+//                if (null == child) {
+//                    view.setAlpha(1);//
+//
+////                    RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) ntCover.getLayoutParams();
+////                    layoutParams.topMargin = 0;
+////                    ntCover.setLayoutParams(layoutParams);
+//                } else {
+//                    alpha = Math.abs(child.getTop());
+//                    alpha = alpha * 255 / (coverHeight - view.getHeight());
+//                    view.setAlpha(Math.min(alpha, 255) / 255);
+//
+////                    RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) ntCover.getLayoutParams();
+////                    layoutParams.topMargin -= dy;
+////                    layoutParams.topMargin = Math.min(layoutParams.topMargin, 0);
+////                    ntCover.setLayoutParams(layoutParams);
+//                }
+//            } else {
+//                view.setAlpha(1);
+//            }
 
             int position = linearLayoutManager.findFirstCompletelyVisibleItemPosition();// 获取第一个完全可见的item position
             View child = null;
@@ -78,7 +78,7 @@ public class StickyOnScrollListener extends RecyclerView.OnScrollListener {
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) viewSticky.getLayoutParams();
             if (itemViewType == DataBean.TYPE_GROUP) {
                 int margin = child.getTop();
-                margin -= viewSticky.getHeight();
+                margin -= (viewSticky.getHeight());
                 if (margin < - viewSticky.getHeight()) margin = 0;
                 params.topMargin = Math.min(margin, 0);
                 viewSticky.setLayoutParams(params);
