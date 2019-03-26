@@ -1,24 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/stickyRecyclerView"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/title"/>
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_00000000">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="center"
+                    android:src="@mipmap/icon_title"
+                    />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="center"
+                    android:src="@mipmap/icon_title"
+                    />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="center"
+                    android:src="@mipmap/icon_title"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@color/color_6c6a6a"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/color_763ecc"
+                        android:gravity="center"
+                        android:text="笑一笑" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/color_8855dd"
+                        android:gravity="center"
+                        android:text="哭一哭" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/stickyRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+    </android.support.design.widget.CoordinatorLayout>
 
     <!-- 粘性title -->
     <RelativeLayout
         android:id="@+id/stickyTitle"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_below="@+id/title"
+        android:layout_marginTop="48dp"
         android:visibility="gone">
 
         <TextView
@@ -32,25 +99,13 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@mipmap/ic_launcher_round">
 
-
-        <TextView
-            android:id="@+id/titleBraaa"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="标题栏"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:background="#ffffff"/>
-
-
-    </RelativeLayout>
-
+    <Button
+        android:id="@+id/nestedScrollView"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:text="跳转NestedScrollView"/>
 
 
 
