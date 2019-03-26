@@ -18,6 +18,7 @@ public class MyNestedScrollView extends NestedScrollView {
      */
     int mParentScrollHeight ;
     int mScrollY ;
+    int mScrollX ;
     public MyNestedScrollView(Context context) {
         super(context);
     }
