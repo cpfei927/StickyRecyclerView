@@ -2,11 +2,16 @@ package com.cpfei.stickyrecyclerview;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import com.cpfei.stickyrecyclerview.nested.SimpleTestAdapter;
 
 import java.util.List;
 
@@ -54,6 +59,11 @@ public class StickyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         } else if(viewHolder instanceof SubViewHolder) {
             SubViewHolder holder = (SubViewHolder) viewHolder;
             holder.text.setText(datas.get(i).getTitle());
+
+            SimpleTestAdapter simpleTestAdapter = new SimpleTestAdapter();
+            holder.recyclerViewItem.setAdapter(simpleTestAdapter);
+
+
         }
     }
 
@@ -91,10 +101,21 @@ public class StickyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     class SubViewHolder extends RecyclerView.ViewHolder {
         private final TextView text;
+        private RecyclerView recyclerViewItem;
         public SubViewHolder(@NonNull View itemView) {
             super(itemView);
             text = itemView.findViewById(R.id.itemSubTitleText);
+            recyclerViewItem = itemView.findViewById(R.id.recyclerViewItem);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 4);
+            recyclerViewItem.setLayoutManager(gridLayoutManager);
+
+//            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+//            linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+//            recyclerViewItem.setLayoutManager(linearLayoutManager);
+
+            recyclerViewItem.setNestedScrollingEnabled(false);
         }
     }
+
 
 }

@@ -42,7 +42,7 @@ public class SimpleTestAdapter extends RecyclerView.Adapter<SimpleTestAdapter.Te
 
     @Override
     public int getItemCount() {
-        return data == null ? 300 : data.size();
+        return data == null ? 8 : data.size();
     }
 
 

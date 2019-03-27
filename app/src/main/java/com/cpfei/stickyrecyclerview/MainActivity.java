@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         recyclerView.addOnScrollListener(stickyOnScrollListener);
+
+//        LinearSnapHelper linearSnapHelper = new LinearSnapHelper();
+//        linearSnapHelper.attachToRecyclerView(recyclerView);
+
+//        PagerSnapHelper pagerSnapHelper = new PagerSnapHelper();
+//        pagerSnapHelper.attachToRecyclerView(recyclerView);
 
 
         findViewById(R.id.nestedScrollView).setOnClickListener(new View.OnClickListener() {
